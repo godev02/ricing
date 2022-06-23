@@ -1,0 +1,18 @@
+#! /bin/sh
+
+bspc monitor -d I II III IV V VI VII VIII IX
+bspc config border_width         2
+bspc config window_gap           12
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config focused_border_color '#1d3554'
+
+while pgrep polybar &>> /dev/null; do killall -q polybar && sleep 1; done
+while pgrep sxhkd &>> /dev/null; do killall -q sxhkd && sleep 1; done
+while pgrep feh &>> /dev/null; do killall -q feh && sleep 1; done
+while pgrep picom &>> /dev/null; do killall -q picom && sleep 1; done
+
+wmname LG3D &>> /dev/null &
+sxhkd &>> /dev/null &
