@@ -1,0 +1,111 @@
+#
+# Запуск программ
+#
+
+# Эмулятор терминала (Alacritty)
+super + t
+	alacritty
+
+# Веб-браузер (Firefox)
+super + w
+	firefox
+
+# Файловый менеджер (Thunar)
+super + f
+	thunar
+
+# Управление звуком (Pavucontrol)
+super + p
+	pavucontrol
+
+# OBS Studio
+super + o
+	obs
+
+# Discord
+super + d
+	discord
+
+# Telegram
+super + t
+	telegram-desktop
+
+#
+# Управление процессами
+#
+
+# Перечитать конфигурационные файлы sxhkd
+super + ctrl + u
+	pkill -USR1 -x sxhkd
+
+# {закрыть, перезапустить} bspwm
+super + ctrl + {q, r}
+	bspc {quit,wm -r}
+
+# {закрыть окно, завершить процесс}
+super + ctrl + {c, k}
+	bspc node -{c,k}
+
+#
+# Переключение режимов отображения
+#
+
+# Переключение между tiling и monocle режимами
+super + alt + s
+	bspc desktop -l next
+
+# Переключение на {tiling, pseudo-tiling, floating, fullscreen} режим отображения окна
+super + alt + {t, p, f, b}
+        bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+#
+# Изменение размера и положения окна
+#
+
+# Расширить текущее окно за {левый, правый, верхий, нижний} край
+super + shift + {Left, Right, Up, Down}
+        bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+
+# Сузить текущее окно за {левый, правый, верхний, нижний} край
+super + alt + {Right, Left, Down, Up}
+        bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+
+# Переместить текущее плавающее окно {влево, вправо, вверх, вниз}
+super + {Left, Right, Up, Down}
+        bspc node -v {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+	
+# Поменять местами текущее окно и самое большое окно (в рамках всех рабочих областей)
+super + shift + b
+        bspc node -s biggest.window
+
+# Поменять текущее окно с тем, что {слева, снизу, сверху, справа} от него
+super + shift + {h,j,k,l}
+       bspc node -s {west,south,north,east}
+
+# Переместить окно на рабочую область с номером {1-9}
+super + shift + {1-9}
+       bspc node -d '^{1-9}'
+
+#
+# Изменение фокуса
+#
+
+# Изменить фокус на окно {слева, снизу, сверху, справа} от текущего
+super + {h,j,k,l}
+       bspc node -f {west,south,north,east}
+
+# Изменить фокус на {следующее, предыдущее} по порядку окно в данной рабочей области
+super + {period, comma}
+       bspc node -f {next,prev}.local.!hidden.window
+
+# Изменить фокус на {предыдущую, следующую} по порядку рабочую область
+super + {bracketleft,bracketright}
+       bspc desktop -f {prev,next}.local
+
+# Изменить фокус на предыдущую по активности рабочую область
+super + Tab
+       bspc desktop -f last
+
+# Изменить фокус на рабочую область с номером {1-9}
+super + {1-9}
+       bspc desktop -f '^{1-9}'
